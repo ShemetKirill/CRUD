@@ -77,14 +77,16 @@ namespace CRUD.Controllers
             _context.Notes.Add(model);
 
             _context.SaveChanges();
-            return View("List");
+            return RedirectToAction("List");
 
         }
 
         public IActionResult Delete(int Id)
         {
             var item= _context.Notes.FirstOrDefault(n => n.Id == Id);
+            var item2= _context.Dates.FirstOrDefault(n => n.Id == Id);
             _context.Notes.Remove(item);
+            _context.Dates.Remove(item2);
             _context.SaveChanges();
             return RedirectToAction("List");
         }
